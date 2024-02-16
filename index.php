@@ -11,7 +11,7 @@ $show = query("SELECT * FROM shows");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>SIKAWANKU JATIM 2024</title>
+  <title>SIKAWANKU 2024</title>
   <!-- Favicon-->
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
   <!-- Bootstrap icons-->
