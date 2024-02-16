@@ -114,7 +114,7 @@ $show = query("SELECT * FROM shows");
           <div class="col-lg-8 col-xl-7 col-xxl-6">
             <div class="my-5 text-center text-xl-start">
               <h1 class="display-5 fw-bolder text-white mb-2">
-                SIKAWANKU (Sistem Infromasi Kawasan Kumuh)
+                SIKAWANKU (Sistem Informasi Kawasan Kumuh)
               </h1>
               <p class="lead fw-normal text-white-50 mb-4">
                 Provinsi Jawa Timur
