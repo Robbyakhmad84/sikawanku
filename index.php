@@ -1,8 +1,3 @@
-<?php
-require 'functions.php';
-$show = query("SELECT * FROM shows");
-// var_dump($show);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,97 +11,24 @@ $show = query("SELECT * FROM shows");
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-  <!-- datatable jquery -->
-  <script defer src="https://code.jquery.com/jquery-3.7.0.js">
-  </script>
-  <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js">
-  </script>
-  <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js">
-  </script>
-  <script defer src="script.js">
-  </script>
+
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="css/styles.css" rel="stylesheet" />
+  <!-- load nav/footer bar -->
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body class="d-flex flex-column h-100">
   <main class="flex-shrink-0">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container px-5">
-        <a class="navbar-brand" href="index.php">SIKAWANKU</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.php">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pricing.html">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="faq.html">FAQ</a>
-            </li>
-            <!-- <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  id="navbarDropdownBlog"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Blog</a
-                >
-                <ul
-                  class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownBlog"
-                >
-                  <li>
-                    <a class="dropdown-item" href="blog-home.html">Blog Home</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  id="navbarDropdownPortfolio"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  >Portfolio</a
-                >
-                <ul
-                  class="dropdown-menu dropdown-menu-end"
-                  aria-labelledby="navbarDropdownPortfolio"
-                >
-                  <li>
-                    <a class="dropdown-item" href="portfolio-overview.html"
-                      >Portfolio Overview</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="portfolio-item.html"
-                      >Portfolio Item</a
-                    >
-                  </li> -->
-          </ul>
-          </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <!--Navigation bar-->
+    <div id="nav-placeholder">
+    </div>
+    <script>
+      $(function() {
+        $("#nav-placeholder").load("nav.html");
+      });
+    </script>
+    <!--end of Navigation bar-->
     <!-- Header-->
     <header class="bg-dark py-5">
       <div class="container px-5">
@@ -120,7 +42,7 @@ $show = query("SELECT * FROM shows");
                 Provinsi Jawa Timur
               </p>
               <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Data Kawasan Kumuh</a>
+                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="data.php">Data Kawasan Kumuh</a>
                 <!-- <a class="btn btn-outline-light btn-lg px-4" href="#!"
                     >Learn More</a
                   > -->
@@ -128,95 +50,28 @@ $show = query("SELECT * FROM shows");
             </div>
           </div>
           <!-- <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-              <img
-                class="img-fluid rounded-3 my-5"
-                src="https://dummyimage.com/600x400/343a40/6c757d"
-                alt="..."
-              />
-            </div> -->
+            <img class="img-fluid rounded-3 my-5" src="assets/bg-perumahan.jpg" alt="..." />
+          </div> -->
         </div>
       </div>
     </header>
-    <!-- Features section-->
-    <section class="py-5" id="features">
-      <div class="container px-5 my-5">
-        <div class="row gx-5">
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <h2 class="fw-bolder mb-0">Rekap Pengurangan Kumuh 2023</h2>
-          </div>
-          <div class="col-lg-8">
-            <table id="rekap-data" class="table table-striped">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Kabupaten/Kota</th>
-                  <th>Luas Kumuh Awal</th>
-                  <th>Kumulatif sd 2023</th>
-                  <th>Sisa Luasan Kumuh</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($show as $row) : ?>
-                  <tr>
-                    <td><?= $row["id"] ?></td>
-                    <td><?= $row["nama"] ?></td>
-                    <td><?= $row["luasawal"] ?></td>
-                    <td><?= $row["kumulatif"] ?></td>
-                    <td><?= $row["sisakumuh"] ?></td>
-                    <td><a href="#">Detail</a>
-                      <!-- <a href="update.php?id=<?= $row["id"]; ?>">Update</a> -->
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Testimonial section-->
-    <!-- <div class="py-5 bg-light">
-      <div class="container px-5 my-5">
-        <div class="row gx-5 justify-content-center">
-          <div class="col-lg-10 col-xl-7">
-            <div class="text-center">
-              <div class="fs-4 mb-4 fst-italic">
-                "Working with Start Bootstrap templates has saved me tons of
-                development time when building new projects! Starting with a
-                Bootstrap template just makes things easier!"
-              </div>
-              <div class="d-flex align-items-center justify-content-center">
-                <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                <div class="fw-bold">
-                  Tom Ato
-                  <span class="fw-bold text-primary mx-1">/</span>
-                  CEO, Pomodoro
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <!-- Blog preview section-->
-    <!-- <section class="py-5">
+    <section class="py-5">
       <div class="container px-5 my-5">
         <div class="row gx-5 justify-content-center">
           <div class="col-lg-8 col-xl-6">
             <div class="text-center">
-              <h2 class="fw-bolder">From our blog</h2>
-              <p class="lead fw-normal text-muted mb-5">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Eaque fugit ratione dicta mollitia. Officiis ad.
-              </p>
+              <h2 class="fw-bolder">Berita Terkini</h2>
+              <!-- <p class="lead fw-normal text-muted mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, unde.
+                </p> -->
             </div>
           </div>
         </div>
         <div class="row gx-5">
           <div class="col-lg-4 mb-5">
             <div class="card h-100 shadow border-0">
-              <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+              <img class="card-img-top" src="assets/bg-perumahan.jpg" alt="..." />
               <div class="card-body p-4">
                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">
                   News
@@ -308,7 +163,7 @@ $show = query("SELECT * FROM shows");
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
         <!-- Call to action-->
         <!-- <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
           <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
@@ -334,31 +189,20 @@ $show = query("SELECT * FROM shows");
           </div>
         </aside>
       </div>
-    </section>
-  </main> -->
-  <!-- Footer-->
-  <footer class="bg-dark py-4 mt-auto">
-    <div class="container px-5">
-      <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-        <div class="col-auto">
-          <div class="small m-0 text-white">
-            Copyright &copy; Sikawanku 2023
-          </div>
-        </div>
-        <div class="col-auto">
-          <a class="link-light small" href="#!">Privacy</a>
-          <span class="text-white mx-1">&middot;</span>
-          <a class="link-light small" href="#!">Terms</a>
-          <span class="text-white mx-1">&middot;</span>
-          <a class="link-light small" href="#!">Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </section>-->
+  </main>
+  <!-- footer -->
+  <div id="footer-placeholder">
+  </div>
+  <script>
+    $(function() {
+      $("#footer-placeholder").load("footer.html");
+    });
+  </script>
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
+  <!-- <script src="js/scripts.js"></script> -->
 </body>
 
 </html>
