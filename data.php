@@ -66,7 +66,7 @@ $show = query("SELECT * FROM shows");
                                         <td><?= $row["luasawal"] ?></td>
                                         <td><?= $row["kumulatif"] ?></td>
                                         <td><?= $row["sisakumuh"] ?></td>
-                                        <td><a href="#">Detail</a>
+                                        <td><a href="#"><button>Detail</button></a>
                                             <!-- <a href="update.php?id=<?= $row["id"]; ?>">Update</a> -->
                                         </td>
                                     </tr>
