@@ -8,7 +8,7 @@
   <meta name="author" content="" />
   <title>SIKAWANKU 2024</title>
   <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="assets/logo-jatim.png" />
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
@@ -30,7 +30,7 @@
     </script>
     <!--end of Navigation bar-->
     <!-- Header-->
-    <header class="bg-dark py-5">
+    <header class="bg-secondary py-5">
       <div class="container px-5">
         <div class="row gx-5 align-items-center justify-content-center">
           <div class="col-lg-8 col-xl-7 col-xxl-6">
@@ -49,9 +49,9 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+          <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
             <img class="img-fluid rounded-3 my-5" src="assets/bg-perumahan.jpg" alt="..." />
-          </div> -->
+          </div>
         </div>
       </div>
     </header>
@@ -71,7 +71,7 @@
         <div class="row gx-5">
           <div class="col-lg-4 mb-5">
             <div class="card h-100 shadow border-0">
-              <img class="card-img-top" src="assets/bg-perumahan.jpg" alt="..." />
+              <img class="card-img-top" src="assets/rapat-internal.jpg" alt="..." />
               <div class="card-body p-4">
                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">
                   News
@@ -89,9 +89,9 @@
                   <div class="d-flex align-items-center">
                     <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
                     <div class="small">
-                      <div class="fw-bold">Kelly Rowan</div>
+                      <div class="fw-bold">Admin</div>
                       <div class="text-muted">
-                        March 12, 2023 &middot; 6 min read
+                        March 12, 2023 &middot;
                       </div>
                     </div>
                   </div>
@@ -101,7 +101,7 @@
           </div>
           <div class="col-lg-4 mb-5">
             <div class="card h-100 shadow border-0">
-              <img class="card-img-top" src="https://dummyimage.com/600x350/adb5bd/495057" alt="..." />
+              <img class="card-img-top" src="assets/rapat-pasuruan.jpg" alt="..." />
               <div class="card-body p-4">
                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">
                   Media
@@ -122,7 +122,7 @@
                     <div class="small">
                       <div class="fw-bold">Josiah Barclay</div>
                       <div class="text-muted">
-                        March 23, 2023 &middot; 4 min read
+                        March 23, 2023 &middot;
                       </div>
                     </div>
                   </div>
@@ -132,7 +132,7 @@
           </div>
           <div class="col-lg-4 mb-5">
             <div class="card h-100 shadow border-0">
-              <img class="card-img-top" src="https://dummyimage.com/600x350/6c757d/343a40" alt="..." />
+              <img class="card-img-top" src="assets/rapat-mojokerto.jpg" alt="..." />
               <div class="card-body p-4">
                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">
                   News
@@ -155,7 +155,7 @@
                     <div class="small">
                       <div class="fw-bold">Evelyn Martinez</div>
                       <div class="text-muted">
-                        April 2, 2023 &middot; 10 min read
+                        April 2, 2023 &middot;
                       </div>
                     </div>
                   </div>

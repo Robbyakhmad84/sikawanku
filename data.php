@@ -11,7 +11,7 @@ $show = query("SELECT * FROM shows");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIKAWANKU</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/logo-jatim.png" />
     <!-- datatable jquery -->
     <script defer src="https://code.jquery.com/jquery-3.7.0.js">
     </script>
