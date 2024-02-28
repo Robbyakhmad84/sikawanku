@@ -1,3 +1,8 @@
+<?php
+require 'functions.php';
+$show = query("SELECT * FROM shows");
+// var_dump($show);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +16,15 @@
   <link rel="icon" type="image/x-icon" href="assets/logo-jatim.png" />
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-
+  <!-- datatable jquery -->
+  <script defer src="https://code.jquery.com/jquery-3.7.0.js">
+  </script>
+  <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js">
+  </script>
+  <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js">
+  </script>
+  <script defer src="js/script.js">
+  </script>
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="css/styles.css" rel="stylesheet" />
   <!-- load nav/footer bar -->
@@ -45,7 +58,7 @@
                 Provinsi Jawa Timur
               </p>
               <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="data.php">Data Kawasan Kumuh</a>
+                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#datarekap">Data Kawasan Kumuh</a>
                 <!-- <a class="btn btn-outline-light btn-lg px-4" href="#!"
                     >Learn More</a
                   > -->
@@ -77,115 +90,46 @@
         </div>
       </div>
     </header>
-    <!-- Blog preview section-->
-    <section class="py-5">
-      <div class="container px-5 my-5">
-        <div class="row gx-5 justify-content-center">
-          <div class="col-lg-8 col-xl-6">
-            <div class="text-center">
-              <h2 class="fw-bolder">Berita Terkini</h2>
-              <!-- <p class="lead fw-normal text-muted mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, unde.
-                </p> -->
+    <!-- Data preview section-->
+    <section class="py-5" id="datarekap">
+      <div class="container px-5">
+        <!-- Data -->
+        <div class="text-center">
+          <h1 class="fw-bolder">Rekap Penanganan Kumuh 2023</h1>
+          <p class="lead fw-normal text-muted mb-0">Kab/Kota Provinsi Jawa Timur</p>
+        </div>
+        <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
+          <div class="row gx-0 justify-content-center">
+            <div class="col-lg-5 col-xl-10">
+              <table id="rekap-data" class="table table-striped text-center">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Kabupaten/Kota</th>
+                    <th>Luas Kumuh Awal</th>
+                    <th>Kumulatif sd 2023</th>
+                    <th>Sisa Luasan Kumuh</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($show as $row) : ?>
+                    <tr>
+                      <td><?= $row["id"] ?></td>
+                      <td><?= $row["nama"] ?></td>
+                      <td><?= $row["luasawal"] ?></td>
+                      <td><?= $row["kumulatif"] ?></td>
+                      <td><?= $row["sisakumuh"] ?></td>
+                      <td><a href="detailkab.php"><button>Detail</button></a>
+                        <!-- <a href="update.php?id=<?= $row["id"]; ?>">Update</a> -->
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <div class="row gx-5">
-          <div class="col-lg-4 mb-5">
-            <div class="card h-100 shadow border-0">
-              <img class="card-img-top" src="assets/rapat-internal.jpg" alt="..." />
-              <div class="card-body p-4">
-                <div class="badge bg-primary bg-gradient rounded-pill mb-2">
-                  News
-                </div>
-                <a class="text-decoration-none link-dark stretched-link" href="#!">
-                  <h5 class="card-title mb-3">Rapat Koordinasi Persiapan Sinkronisasi Capaian Pengurangan Kumuh Jawa Timur 2023</h5>
-                </a>
-                <p class="card-text mb-0">
-                  <!-- Some quick example text to build on the card title and make
-                  up the bulk of the card's content. -->
-                </p>
-              </div>
-              <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                <div class="d-flex align-items-end justify-content-between">
-                  <div class="d-flex align-items-center">
-                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                    <div class="small">
-                      <div class="fw-bold">Admin</div>
-                      <div class="text-muted">
-                        <!-- March 12, 2023 &middot; -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 mb-5">
-            <div class="card h-100 shadow border-0">
-              <img class="card-img-top" src="assets/rapat-pasuruan.jpg" alt="..." />
-              <div class="card-body p-4">
-                <div class="badge bg-primary bg-gradient rounded-pill mb-2">
-                  News
-                </div>
-                <a class="text-decoration-none link-dark stretched-link" href="#!">
-                  <h5 class="card-title mb-3">Rapat Perhitungan Pengurangan Kumuh Kab. Pasuruan</h5>
-                </a>
-                <p class="card-text mb-0">
-                  <!-- This text is a bit longer to illustrate the adaptive height
-                  of each card. Some quick example text to build on the card
-                  title and make up the bulk of the card's content. -->
-                </p>
-              </div>
-              <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                <div class="d-flex align-items-end justify-content-between">
-                  <div class="d-flex align-items-center">
-                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                    <div class="small">
-                      <div class="fw-bold">Admin</div>
-                      <div class="text-muted">
-                        <!-- March 23, 2023 &middot; -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 mb-5">
-            <div class="card h-100 shadow border-0">
-              <img class="card-img-top" src="assets/rapat-mojokerto.jpg" alt="..." />
-              <div class="card-body p-4">
-                <div class="badge bg-primary bg-gradient rounded-pill mb-2">
-                  News
-                </div>
-                <a class="text-decoration-none link-dark stretched-link" href="#!">
-                  <h5 class="card-title mb-3">
-                    Rapat Perhitungan Pengurangan Kumuh Kab. Mojokerto
-                  </h5>
-                </a>
-                <p class="card-text mb-0">
-                  <!-- Some more quick example text to build on the card title and
-                  make up the bulk of the card's content. -->
-                </p>
-              </div>
-              <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
-                <div class="d-flex align-items-end justify-content-between">
-                  <div class="d-flex align-items-center">
-                    <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                    <div class="small">
-                      <div class="fw-bold">Admin</div>
-                      <div class="text-muted">
-                        <!-- April 2, 2023 &middot; -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
     </section>
   </main>
   <!-- footer -->
