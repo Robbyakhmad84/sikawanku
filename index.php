@@ -1,7 +1,7 @@
 <?php
 
 require 'functions.php';
-$show = query("SELECT * FROM shows");;
+$show = query("SELECT * FROM shows");
 //var_dump($sumluasawal[0]);
 
 ?>
@@ -71,14 +71,17 @@ $show = query("SELECT * FROM shows");;
             <div class="slideshow-container">
               <div class="mySlides fade">
                 <img class="img-fluid rounded-4 my-5" src="assets/rapat-internal.jpg" style="width:80%">
+                <br><br>
                 <div class="text">Rapat Koordinasi Persiapan Sinkronisasi Capaian Pengurangan Kumuh Jawa Timur 2023</div>
               </div>
               <div class="mySlides fade">
                 <img class="img-fluid rounded-4 my-5" src="assets/rapat-mojokerto.jpg" style="width:80%">
+                <br>
                 <div class="text">Rapat Perhitungan Pangurangan Kumuh Kab. Mojokerto</div>
               </div>
               <div class="mySlides fade">
                 <img class="img-fluid rounded-4 my-5" src="assets/rapat-pasuruan.jpg" style="width:80%">
+                <br>
                 <div class="text">Rapat Perhitungan Pangurangan Kumuh Kab. Pasuruan</div>
               </div>
               <div style="text-align: center;">
@@ -102,7 +105,7 @@ $show = query("SELECT * FROM shows");;
         </div>
         <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
           <div class="row gx-0 justify-content-center">
-            <div class="col-lg-5 col-xl-10">
+            <div class="col-lg-20 col-xl-20">
               <table id="datatable" class="table table-striped text-center">
                 <thead>
                   <tr>
@@ -122,8 +125,8 @@ $show = query("SELECT * FROM shows");;
                       <td><?= $row["luasawal"] ?></td>
                       <td><?= $row["kumulatif"] ?></td>
                       <td><?= $row["sisakumuh"] ?></td>
-                      <td><a href="detailkab.php?id=<?= $row["id"]; ?>"><button>Detail</button></a>
-                        <a href="update.php?id=<?= $row["id"]; ?>"><button>Update</button></a>
+                      <td><a href="detailkab.php?id=<?= $row["id"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
+                        <a href="update.php?id=<?= $row["id"]; ?>"><button class="button" style="vertical-align: middle;"><span>Update</span></button></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>
