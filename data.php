@@ -1,7 +1,10 @@
 <?php
 require 'functions.php';
 $show = query("SELECT * FROM shows");
-// var_dump($show);
+$sumluasawal = query("SELECT SUM(luasawal) FROM shows");
+$sumkumulatif = query("SELECT SUM(kumulatif) FROM shows");
+$sumsisakumuh = query("SELECT SUM(sisakumuh) FROM shows");
+//var_dump($sumluasawal, $sumkumulatif, $sumsisakumuh);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +50,7 @@ $show = query("SELECT * FROM shows");
             <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="row gx-0 justify-content-center">
                     <div class="col-lg-5 col-xl-10">
-                        <table id="rekap-data" class="table table-striped text-center">
+                        <table id="datatable" class="table table-striped text-center">
                             <thead>
                                 <tr>
                                     <th>No.</th>

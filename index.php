@@ -1,7 +1,9 @@
 <?php
+
 require 'functions.php';
-$show = query("SELECT * FROM shows");
-// var_dump($show);
+$show = query("SELECT * FROM shows");;
+//var_dump($sumluasawal[0]);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +103,7 @@ $show = query("SELECT * FROM shows");
         <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
           <div class="row gx-0 justify-content-center">
             <div class="col-lg-5 col-xl-10">
-              <table id="rekap-data" class="table table-striped text-center">
+              <table id="datatable" class="table table-striped text-center">
                 <thead>
                   <tr>
                     <th>No.</th>
@@ -120,8 +122,8 @@ $show = query("SELECT * FROM shows");
                       <td><?= $row["luasawal"] ?></td>
                       <td><?= $row["kumulatif"] ?></td>
                       <td><?= $row["sisakumuh"] ?></td>
-                      <td><a href="detailkab.php"><button>Detail</button></a>
-                        <!-- <a href="update.php?id=<?= $row["id"]; ?>">Update</a> -->
+                      <td><a href="detailkab.php?id=<?= $row["id"]; ?>"><button>Detail</button></a>
+                        <a href="update.php?id=<?= $row["id"]; ?>"><button>Update</button></a>
                       </td>
                     </tr>
                   <?php endforeach; ?>
@@ -130,6 +132,22 @@ $show = query("SELECT * FROM shows");
             </div>
           </div>
         </div>
+        <!-- <div class="text-center">
+          <h1 class="fw-bolder">Total Penanganan Kumuh Jatim 2023</h1>
+          <table id="datatable" class="table table-striped text-center">
+            <thead>
+              <tr>
+                <th>Luas Kumuh Awal</th>
+                <th>Kumulatif sd 2023</th>
+                <th>Sisa Luasan Kumuh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <td><?= $sumluasawal ?></td>
+            </tbody>
+          </table>
+        </div> -->
+      </div>
     </section>
   </main>
   <!-- footer -->

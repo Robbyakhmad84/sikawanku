@@ -20,15 +20,16 @@ function update($data)
     global $conn;
 
     $id = $data["id"];
-    $luasawal = htmlspecialchars($data["luasawal"]);
-    $kumulatif = htmlspecialchars($data["kumulatif"]);
-    $sisakumuh = htmlspecialchars($data["sisakumuh"]);
 
-    $query = "UPDATE shows SET 
-                luasawal = '$luasawal', 
-                kumulatif = '$kumulatif', 
-                sisakumuh = '$sisakumuh', 
+    $luasawal = ($data['luasawal']);
+    $kumulatif = ($data['kumulatif']);
+    $sisakumuh = $luasawal - $kumulatif;
+
+    $query = "UPDATE shows SET                         
+                kumulatif = $kumulatif,
+                sisakumuh = $sisakumuh                
                 WHERE id = $id";
+
 
     mysqli_query($conn, $query);
 
