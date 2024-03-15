@@ -5,6 +5,7 @@ $show = query("SELECT * FROM shows");
 //var_dump($sumluasawal[0]);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,7 +127,7 @@ $show = query("SELECT * FROM shows");
                       <td><?= $row["kumulatif"] ?></td>
                       <td><?= $row["sisakumuh"] ?></td>
                       <td><a href="detailkab.php?id=<?= $row["id"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
-                        <a href="update.php?id=<?= $row["id"]; ?>"><button class="button" style="vertical-align: middle;"><span>Update</span></button></a>
+                        <!-- <a href="update.php?id=<?= $row["id"]; ?>"><button class="button" style="vertical-align: middle;"><span>Update</span></button></a> -->
                       </td>
                     </tr>
                   <?php endforeach; ?>
@@ -136,7 +137,7 @@ $show = query("SELECT * FROM shows");
           </div>
         </div>
         <!-- <div class="text-center">
-          <h1 class="fw-bolder">Total Penanganan Kumuh Jatim 2023</h1>
+                <h1 class="fw-bolder">Total Penanganan Kumuh Jatim 2023</h1>
           <table id="datatable" class="table table-striped text-center">
             <thead>
               <tr>

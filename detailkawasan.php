@@ -1,9 +1,13 @@
 <?php
 require 'functions.php';
 
+$prefix = $_GET ["prefix"];
 $id = $_GET["id"];
-$namakab = query("SELECT * FROM shows WHERE id = $id")[0];
-$show = query("SELECT * FROM detailkab_$id");
+$prefid = $prefix . $id;
+//var_dump($prefid);
+$namakawasan = query("SELECT * FROM detailkab_$prefix WHERE id = $id")[0];
+//var_dump($namakawasan);
+$show = query("SELECT * FROM detailkawasan_$prefid");
 //var_dump($show);
 ?>
 <!DOCTYPE html>
@@ -44,7 +48,7 @@ $show = query("SELECT * FROM detailkab_$id");
         <div class="container px-5">
             <!-- Data -->
             <div class="text-center">
-                <h1 class="fw-bolder">Detail Penanganan Kumuh <?= $namakab["nama"] ?></h1>
+                <h1 class="fw-bolder">Detail Penanganan Kumuh Kawasan <?= $namakawasan["lokasi"] ?></h1>
             </div>
             <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="row gx-0 justify-content-center">
@@ -53,11 +57,13 @@ $show = query("SELECT * FROM detailkab_$id");
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama Lokasi</th>
-                                    <th>Luas Kumuh Awal</th>
-                                    <th>Penanganan Kumuh 2023</th>
-                                    <th>Sisa Luasan Kumuh s/d 2023</th>
-                                    <th>Aksi</th>
+                                    <th>Kelurahan</th>
+                                    <th>RT Terdeliniasi</th>
+                                    <th>Luas Kumuh Awal (Ha)</th>
+                                    <th>Nilai Kumuh Awal</th>
+                                    <th>Nilai Kumuh Akhir</th>
+                                    <th>Pengurangan Kumuh</th>
+                                    <th>Luas Kumuh Akhir</th>
 
                                 </tr>
                             </thead>
@@ -65,11 +71,13 @@ $show = query("SELECT * FROM detailkab_$id");
                                 <?php foreach ($show as $row) : ?>
                                     <tr>
                                         <td><?= $row["id"] ?></td>
-                                        <td><?= $row["lokasi"] ?></td>
-                                        <td><?= $row["luasawal"] ?></td>
-                                        <td><?= $row["penanganan"] ?></td>
-                                        <td><?= $row["sisakumuh"] ?></td>
-                                        <td><a href="detailkawasan.php?id=<?= $row["id"]; ?>&prefix=<?= $row["prefix"];?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
+                                        <td><?= $row["nama_kel"] ?></td>
+                                        <td><?= $row["rt_delineasi"] ?></td>
+                                        <td><?= $row["luas_kumuh_awal"] ?></td>
+                                        <td><?= $row["nilai_kumuh_awal"] ?></td>
+                                        <td><?= $row["nilai_kumuh_akhir"] ?></td>
+                                        <td><?= $row["pengurangan_kumuh"] ?></td>
+                                        <td><?= $row["luas_kumuh_akhir"] ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
