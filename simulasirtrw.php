@@ -3,11 +3,10 @@ require 'functions.php';
 
 $prefix = $_GET["prefix"];
 $id = $_GET["id"];
-$prefid = $prefix . $id;
-//var_dump($prefid);
-$namakawasan = query("SELECT * FROM detailkab_$prefix WHERE id = $id")[0];
+
+$nama = query("SELECT * FROM detailkawasan_$prefix WHERE id = $id")[0];
 //var_dump($namakawasan);
-$show = query("SELECT * FROM detailkawasan_$prefid");
+$show = query("SELECT * FROM detailrtrw_$prefix");
 //var_dump($show);
 ?>
 <!DOCTYPE html>
@@ -48,7 +47,7 @@ $show = query("SELECT * FROM detailkawasan_$prefid");
         <div class="container px-5">
             <!-- Data -->
             <div class="text-center">
-                <h1 class="fw-bolder">Detail Penanganan Kumuh Kawasan <?= $namakawasan["lokasi"] ?></h1>
+                <h1 class="fw-bolder">Detail Penanganan Kumuh Kawasan <?= $nama["lokasi"] ?></h1>
             </div>
             <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="row gx-0 justify-content-center">
@@ -78,7 +77,7 @@ $show = query("SELECT * FROM detailkawasan_$prefid");
                                         <td><?= $row["nilai_kumuh_akhir"] ?></td>
                                         <td><?= $row["pengurangan_kumuh"] ?></td>
                                         <td><?= $row["luas_kumuh_akhir"] ?></td>
-                                        <td><a href="kumuhawal.php?id=<?= $row["id"]; ?>&prefix=<?= $row["prefix"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
+                                        <td><a href="simulasirtrw.php?id=<?= $row["id"]; ?>&prefix=<?= $row["prefix"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
