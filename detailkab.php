@@ -2,9 +2,13 @@
 require 'functions.php';
 
 $id = $_GET["id"];
-$namakab = query("SELECT * FROM shows WHERE id = $id")[0];
-$show = query("SELECT * FROM detailkab_$id");
-//var_dump($show);
+$namakab = query("SELECT * FROM kabupaten WHERE id_kab = $id")[0];
+$sisaluaskumuhkab = query("SELECT SUM(sisa_luas_kumuh) AS total_kumuh FROM kawasan WHERE id_kab = $id");
+//memecah nilai arrray ke dalam string
+$string = implode(',', $sisaluaskumuhkab[0]);
+
+$show = query("SELECT * FROM kawasan WHERE id_kab = $id");
+//var_dump($string);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +48,10 @@ $show = query("SELECT * FROM detailkab_$id");
         <div class="container px-5">
             <!-- Data -->
             <div class="text-center">
-                <h1 class="fw-bolder">Detail Penanganan Kumuh <?= $namakab["nama"] ?></h1>
+                <h1 class="fw-bolder">Detail Kawasan <?= $namakab["nama_kab"] ?></h1>
+            </div>
+            <div class="card bg-primary text-white">
+                <div class="card-body">Total Luas Kumuh <br> <?= $string ?> Ha</div>
             </div>
             <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="row gx-0 justify-content-center">
@@ -62,16 +69,18 @@ $show = query("SELECT * FROM detailkab_$id");
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($show as $row) : ?>
+                                <?php $nomor = 1;
+                                foreach ($show as $row) : ?>
                                     <tr>
-                                        <td><?= $row["id"] ?></td>
-                                        <td><?= $row["lokasi"] ?></td>
-                                        <td><?= $row["luasawal"] ?></td>
+                                        <td><?= $nomor ?></td>
+                                        <td><?= $row["nama_kaw"] ?></td>
+                                        <td><?= $row["luas_kumuh_awal"] ?></td>
                                         <td><?= $row["penanganan"] ?></td>
-                                        <td><?= $row["sisakumuh"] ?></td>
-                                        <td><a href="detailkawasan.php?id=<?= $row["id"]; ?>&prefix=<?= $row["prefix"];?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
+                                        <td><?= $row["sisa_luas_kumuh"] ?></td>
+                                        <td><a href="detailkawasan.php?id=<?= $row["id_kaw"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php $nomor++;
+                                endforeach; ?>
                             </tbody>
                         </table>
                     </div>

@@ -1,14 +1,14 @@
 <?php
 require 'functions.php';
 
-$prefix = $_GET["prefix"];
 $id = $_GET["id"];
-$prefid = $prefix . $id;
-//var_dump($prefid);
-$namakawasan = query("SELECT * FROM detailkab_$prefix WHERE id = $id")[0];
-//var_dump($namakawasan);
-$show = query("SELECT * FROM detailkawasan_$prefid");
-//var_dump($show);
+
+$namakawasan = query("SELECT * FROM kawasan WHERE id_kaw = $id")[0];
+$sisaluaskumuhkel = query("SELECT SUM(luas_kumuh_akhir) AS total_kumuh FROM kelurahan WHERE id_kaw = $id");
+//memecah nilai arrray ke dalam string
+$string = implode(',', $sisaluaskumuhkel[0]);
+$show = query("SELECT * FROM kelurahan WHERE id_kaw =$id");
+//var_dump($string);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +48,10 @@ $show = query("SELECT * FROM detailkawasan_$prefid");
         <div class="container px-5">
             <!-- Data -->
             <div class="text-center">
-                <h1 class="fw-bolder">Detail Penanganan Kumuh Kawasan <?= $namakawasan["lokasi"] ?></h1>
+                <h1 class="fw-bolder">Detail Kelurahan Kawasan <?= $namakawasan["nama_kaw"] ?></h1>
+            </div>
+            <div class="card bg-primary text-white">
+                <div class="card-body">Total Luas Kumuh <br> <?= $string ?> Ha</div>
             </div>
             <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="row gx-0 justify-content-center">
@@ -68,9 +71,10 @@ $show = query("SELECT * FROM detailkawasan_$prefid");
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($show as $row) : ?>
+                                <?php $nomor = 1;
+                                foreach ($show as $row) : ?>
                                     <tr>
-                                        <td><?= $row["id"] ?></td>
+                                        <td><?= $nomor ?></td>
                                         <td><?= $row["nama_kel"] ?></td>
                                         <td><?= $row["rt_delineasi"] ?></td>
                                         <td><?= $row["luas_kumuh_awal"] ?></td>
@@ -78,9 +82,10 @@ $show = query("SELECT * FROM detailkawasan_$prefid");
                                         <td><?= $row["nilai_kumuh_akhir"] ?></td>
                                         <td><?= $row["pengurangan_kumuh"] ?></td>
                                         <td><?= $row["luas_kumuh_akhir"] ?></td>
-                                        <td><a href="kumuhawal.php?id=<?= $row["id"]; ?>&prefix=<?= $row["prefix"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
+                                        <td><a href="kumuhawal.php?id=<?= $row["id_kel"]; ?>&id_kab=<?= $row["id_kab"]; ?>&id_kaw=<?= $row["id_kaw"]?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php $nomor++;
+                                endforeach; ?>
                             </tbody>
                         </table>
                     </div>

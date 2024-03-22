@@ -1,6 +1,6 @@
 <?php
 // <!-- koneksi ke db -->
-$conn = mysqli_connect("localhost", "root", "", "sikaku");
+$conn = mysqli_connect("localhost", "root", "", "sikawanku");
 
 function query($query)
 {

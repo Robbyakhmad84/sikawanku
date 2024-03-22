@@ -1,13 +1,33 @@
 <?php
 
 require 'functions.php';
-$prefix = $_GET["prefix"];
-$id = $_GET["id"];
 
-$nama = query("SELECT * FROM detailkawasan_$prefix WHERE id = $id")[0];
+$id = $_GET["id"];
+$id_kab = $_GET["id_kab"];
+$id_kaw = $_GET["id_kaw"];
+$namakab = query("SELECT * FROM kabupaten WHERE id_kab = $id_kab")[0];
+$nama = query("SELECT * FROM kelurahan WHERE id_kel = $id")[0];
+$namakaw = query("SELECT * FROM kawasan WHERE id_kaw = $id_kaw")[0];
 //var_dump($namakawasan);
-$show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
-//var_dump($show);
+$show = query("SELECT * FROM rtrw WHERE id_rtrw = $id")[0];
+
+$aspek1a = number_format($show['aspek_1a'] / $show ['jum_bangunan'],4)*100;
+$aspek1b = number_format($show['aspek_1b'] / $show ['luas_verif'],4)*100;
+$aspek1c = number_format($show['aspek_1c'] / $show ['jum_bangunan'],4)*100;
+$aspek2a = number_format($show['aspek_2a'] / $show ['pjg_jaling'],4)*100;
+$aspek2b = number_format($show['aspek_2b'] / $show ['pjg_jaling'],4)*100;
+$aspek3a = number_format($show['aspek_3a'] / $show ['jum_kk'],4)*100;
+$aspek3b = number_format($show['aspek_3b'] / $show ['jum_kk'],4)*100;
+$aspek4a = number_format($show['aspek_4a'] / $show ['luas_verif'],4)*100;
+$aspek4b = number_format($show['aspek_4b'] / $show ['pjg_drn'],4)*100;
+$aspek4c = number_format($show['aspek_4c'] / $show ['pjg_drn'],4)*100;
+$aspek5a = number_format($show['aspek_5a'] / $show ['jum_kk'],4)*100;
+$aspek5b = number_format($show['aspek_5b'] / $show ['jum_kk'],4)*100;
+$aspek6a = number_format($show['aspek_6a'] / $show ['jum_kk'],4)*100;
+$aspek6b = number_format($show['aspek_6b'] / $show ['jum_kk'],4)*100;
+$aspek7a = number_format($show['aspek_7a'] / $show ['jum_bangunan'],4)*100;
+$aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +75,7 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
     <section class="py-3">
       <div class="container px-5">
         <div class="text-center">
-          <h1 class="fw-bolder">Detail Kawasan </h1>
+          <h1 class="fw-bolder">Detail RT RW Terdeliniasi</h1>
         </div>
         <div class="card">
           <div class="card-body">
@@ -72,7 +92,11 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                   </tr>
                   <tr>
                     <th>Kabupaten</th>
-                    <td>......</td>
+                    <td><?= $namakab["nama_kab"] ?></td>
+                  </tr>
+                  <tr>
+                    <th>Kawasan</th>
+                    <td><?= $namakaw["nama_kaw"] ?></td>
                   </tr>
                   <tr>
                     <th>Kelurahan</th>
@@ -88,11 +112,11 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                   </tr>
                   <tr>
                     <th>Jumlah Bangunan (Unit)</th>
-                    <td><?= $show["jum_bang"] ?></td>
+                    <td><?= $show["jum_bangunan"] ?></td>
                   </tr>
                   <tr>
                     <th>Jumlah Penduduk (jiwa)</th>
-                    <td><?= $show["jum_pend"] ?></td>
+                    <td><?= $show["jum_penduduk"] ?></td>
                   </tr>
                   <tr>
                     <th>Jumlah KK (kk)</th>
@@ -133,28 +157,28 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                                 <th rowspan="3">1. Kondisi Bangunan Gedung</th>
                                 <td style="font-weight: 600 !important;">a. Ketidakteraturan Bangunan</td>
                                 <td class="text-right">
-                                  <?= $show["1a"] ?></td>
+                                  <?= $show["aspek_1a"] ?></td>
                                 <td class="text-center">
                                   Unit </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek1a ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="2">
                                 <td style="font-weight: 600 !important;">b. Kepadatan Bangunan</td>
                                 <td class="text-right">
-                                  <?= $show["1b"] ?></td>
+                                  <?= $show["aspek_1b"] ?></td>
                                 <td class="text-center">
                                   Ha </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek1b ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="3">
                                 <td style="font-weight: 600 !important;">c. Ketidaksesuaian dengan Persy Teknis Bangunan</td>
                                 <td class="text-right">
-                                  <?= $show["1c"] ?> </td>
+                                  <?= $show["aspek_1c"] ?> </td>
                                 <td class="text-center">
                                   Unit </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek1c ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr style="background-color: #05fff3;">
@@ -166,19 +190,19 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                                 <th rowspan="2">2. Kondisi Jalan Lingkungan</th>
                                 <td style="font-weight: 600 !important;">a. Cakupan Pelayanan Jalan Lingkungan</td>
                                 <td class="text-right">
-                                  <?= $show["2a"] ?></td>
+                                  <?= $show["aspek_2a"] ?></td>
                                 <td class="text-center">
                                   Meter </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek2a ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="5">
                                 <td style="font-weight: 600 !important;">b. Kualitas Permukaan Jalan lingkungan</td>
                                 <td class="text-right">
-                                  <?= $show["2b"] ?></td>
+                                  <?= $show["aspek_2b"] ?></td>
                                 <td class="text-center">
                                   Meter </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek2b ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr style="background-color: #05fff3;">
@@ -190,19 +214,19 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                                 <th rowspan="2">3. Kondisi Penyediaan Air Minum</th>
                                 <td style="font-weight: 600 !important;">a. Ketersediaan Akses Aman Air Minum</td>
                                 <td class="text-right">
-                                  <?= $show["3a"] ?></td>
+                                  <?= $show["aspek_3a"] ?></td>
                                 <td class="text-center">
                                   KK </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek3a ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="7">
                                 <td style="font-weight: 600 !important;">b. Tidak terpenuhinya Kebutuhan Air Minum</td>
                                 <td class="text-right">
-                                  <?= $show["3b"] ?></td>
+                                  <?= $show["aspek_3b"] ?></td>
                                 <td class="text-center">
                                   KK </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek3b ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr style="background-color: #05fff3;">
@@ -214,28 +238,28 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                                 <th rowspan="3">4. Kondisi Drainase Lingkungan</th>
                                 <td style="font-weight: 600 !important;">a. Ketidakmampuan Mengalirkan Limpasan Air</td>
                                 <td class="text-right">
-                                  <?= $show["4a"] ?></td>
+                                  <?= $show["aspek_4a"] ?></td>
                                 <td class="text-center">
                                   Ha </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek4a ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="9">
                                 <td style="font-weight: 600 !important;">b. Ketidaktersediaan Drainase</td>
                                 <td class="text-right">
-                                  <?= $show["4b"] ?></td>
+                                  <?= $show["aspek_4b"] ?></td>
                                 <td class="text-center">
                                   Meter </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek4b ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="10">
                                 <td style="font-weight: 600 !important;">c. Kualitas Konstruksi Drainase</td>
                                 <td class="text-right">
-                                  <?= $show["4c"] ?></td>
+                                  <?= $show["aspek_4c"] ?></td>
                                 <td class="text-center">
                                   Meter </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek4c ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr style="background-color: #05fff3;">
@@ -247,19 +271,19 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                                 <th rowspan="2">5. Kondisi Pengelolaan Air Limbah</th>
                                 <td style="font-weight: 600 !important;">a. Sistem Pengelolaan Air Limbah Tidak Sesuai Standar Teknis</td>
                                 <td class="text-right">
-                                  <?= $show["5a"] ?></td>
+                                  <?= $show["aspek_5a"] ?></td>
                                 <td class="text-center">
                                   KK </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek5a ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="12">
                                 <td style="font-weight: 600 !important;">b. Prasarana dan Sarana Pengelolaan Air Limbah Tidak Sesuai dengan Persyaratan Teknis</td>
                                 <td class="text-right">
-                                  <?= $show["5b"] ?></td>
+                                  <?= $show["aspek_5b"] ?></td>
                                 <td class="text-center">
                                   KK </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek5b ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr style="background-color: #05fff3;">
@@ -271,19 +295,19 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                                 <th rowspan="2">6. Kondisi Pengelolaan Persampahan</th>
                                 <td style="font-weight: 600 !important;">a. Prasarana dan Sarana Persampahan Tidak Sesuai dengan persyaratan Teknis</td>
                                 <td class="text-right">
-                                  <?= $show["6a"] ?></td>
+                                  <?= $show["aspek_6a"] ?></td>
                                 <td class="text-center">
                                   KK </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek6a ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="14">
                                 <td style="font-weight: 600 !important;">b. Sistem Pengelolaan Persampahan yang tidak sesuai Standar Teknis</td>
                                 <td class="text-right">
-                                  <?= $show["6b"] ?></td>
+                                  <?= $show["aspek_6b"] ?></td>
                                 <td class="text-center">
                                   KK </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek6b ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr style="background-color: #05fff3;">
@@ -295,19 +319,19 @@ $show = query("SELECT * FROM detailrtrw_$prefix WHERE id = $id")[0];
                                 <th rowspan="2">7. Kondisi Proteksi Kebakaran</th>
                                 <td style="font-weight: 600 !important;">a. Ketidaktersediaan Prasarana Proteksi Kebakaran</td>
                                 <td class="text-right">
-                                  <?= $show["7a"] ?></td>
+                                  <?= $show["aspek_7a"] ?></td>
                                 <td class="text-center">
                                   Unit </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek7a ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr data-id_aspek="16">
                                 <td style="font-weight: 600 !important;">b. Ketidaktersediaan Sarana Proteksi Kebakaran</td>
                                 <td class="text-right">
-                                  <?= $show["7b"] ?></td>
+                                  <?= $show["aspek_7b"] ?></td>
                                 <td class="text-center">
                                   Unit </td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $aspek7b ?></td>
                                 <td class="text-center">...</td>
                               </tr>
                               <tr style="background-color: #05fff3;">

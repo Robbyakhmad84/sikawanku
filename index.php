@@ -1,8 +1,11 @@
 <?php
 
 require 'functions.php';
-$show = query("SELECT * FROM shows");
-//var_dump($sumluasawal[0]);
+$show = query("SELECT * FROM kabupaten");
+$sisaluaskumuh = query("SELECT SUM(sisa_luas_kumuh) AS total_kumuh FROM kabupaten");
+//memecah nilai arrray ke dalam string
+$string = implode(',',$sisaluaskumuh[0]);
+//var_dump($string);
 
 ?>
 
@@ -104,33 +107,40 @@ $show = query("SELECT * FROM shows");
           <h1 class="fw-bolder">Rekap Penanganan Kumuh 2023</h1>
           <p class="lead fw-normal text-muted mb-0">Kab/Kota Provinsi Jawa Timur</p>
         </div>
+        <div class="card bg-primary text-white">
+          <div class="card-body">Total Sisa Luas Kumuh <br> <?= $string ?> Ha</div>
+        </div>
         <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
           <div class="row gx-0 justify-content-center">
             <div class="col-lg-20 col-xl-20">
-              <table id="datatable" class="table table-striped text-center">
+              <table id="datatable" class="table table-striped text-center table-bordered">
                 <thead>
                   <tr>
                     <th>No.</th>
                     <th>Kabupaten/Kota</th>
+                    <th>Nomor SK KUMUH</th>
                     <th>Luas Kumuh Awal</th>
-                    <th>Kumulatif sd 2023</th>
+                    <th>Kumulatif Penanganan sd 2023</th>
                     <th>Sisa Luasan Kumuh</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($show as $row) : ?>
+                  <?php $nomor = 1;
+                  foreach ($show as $row) : ?>
                     <tr>
-                      <td><?= $row["id"] ?></td>
-                      <td><?= $row["nama"] ?></td>
-                      <td><?= $row["luasawal"] ?></td>
+                      <td><?= $nomor ?></td>
+                      <td><?= $row["nama_kab"] ?></td>
+                      <td><?= $row["no_sk_kumuh"] ?></td>
+                      <td><?= $row["luas_kumuh_awal"] ?></td>
                       <td><?= $row["kumulatif"] ?></td>
-                      <td><?= $row["sisakumuh"] ?></td>
-                      <td><a href="detailkab.php?id=<?= $row["id"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
+                      <td><?= $row["sisa_luas_kumuh"] ?></td>
+                      <td><a href="detailkab.php?id=<?= $row["id_kab"]; ?>"><button class="button" style="vertical-align: middle;"><span>Detail</span></button></a>
                         <!-- <a href="update.php?id=<?= $row["id"]; ?>"><button class="button" style="vertical-align: middle;"><span>Update</span></button></a> -->
                       </td>
                     </tr>
-                  <?php endforeach; ?>
+                  <?php $nomor++;
+                  endforeach; ?>
                 </tbody>
               </table>
             </div>
