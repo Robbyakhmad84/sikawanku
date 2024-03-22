@@ -11,23 +11,35 @@ $namakaw = query("SELECT * FROM kawasan WHERE id_kaw = $id_kaw")[0];
 //var_dump($namakawasan);
 $show = query("SELECT * FROM rtrw WHERE id_kel = $id")[0];
 
-$aspek1a = number_format($show['aspek_1a'] / $show ['jum_bangunan'],4)*100;
-$aspek1b = number_format($show['aspek_1b'] / $show ['luas_verif'],4)*100;
-$aspek1c = number_format($show['aspek_1c'] / $show ['jum_bangunan'],4)*100;
-$aspek2a = number_format($show['aspek_2a'] / $show ['pjg_jaling'],4)*100;
-$aspek2b = number_format($show['aspek_2b'] / $show ['pjg_jaling'],4)*100;
-$aspek3a = number_format($show['aspek_3a'] / $show ['jum_kk'],4)*100;
-$aspek3b = number_format($show['aspek_3b'] / $show ['jum_kk'],4)*100;
-$aspek4a = number_format($show['aspek_4a'] / $show ['luas_verif'],4)*100;
-$aspek4b = number_format($show['aspek_4b'] / $show ['pjg_drn'],4)*100;
-$aspek4c = number_format($show['aspek_4c'] / $show ['pjg_drn'],4)*100;
-$aspek5a = number_format($show['aspek_5a'] / $show ['jum_kk'],4)*100;
-$aspek5b = number_format($show['aspek_5b'] / $show ['jum_kk'],4)*100;
-$aspek6a = number_format($show['aspek_6a'] / $show ['jum_kk'],4)*100;
-$aspek6b = number_format($show['aspek_6b'] / $show ['jum_kk'],4)*100;
-$aspek7a = number_format($show['aspek_7a'] / $show ['jum_bangunan'],4)*100;
-$aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
+$aspek1a = number_format(($show['aspek_1a'] / $show ['jum_bangunan']*100),2);
+$aspek1b = number_format(($show['aspek_1b'] / $show ['luas_verif']*100),2);
+$aspek1c = number_format(($show['aspek_1c'] / $show ['jum_bangunan']*100),2);
+$ratarataaspek1 = number_format((($aspek1a + $aspek1b + $aspek1c)/3),2);
 
+$aspek2a = number_format(($show['aspek_2a'] / $show ['pjg_jaling']*100),2);
+$aspek2b = number_format(($show['aspek_2b'] / $show ['pjg_jaling']*100),2);
+$ratarataaspek2 = number_format((($aspek2a + $aspek2b)/2),2);
+
+$aspek3a = number_format(($show['aspek_3a'] / $show ['jum_kk']*100),2);
+$aspek3b = number_format(($show['aspek_3b'] / $show ['jum_kk']*100),2);
+$ratarataaspek3 = number_format((($aspek3a + $aspek3b)/2),2);
+
+$aspek4a = number_format(($show['aspek_4a'] / $show ['luas_verif']*100),2);
+$aspek4b = number_format(($show['aspek_4b'] / $show ['pjg_drn']*100),2);
+$aspek4c = number_format(($show['aspek_4c'] / $show ['pjg_drn']*100),2);
+$ratarataaspek4 = number_format((($aspek4a + $aspek4b + $aspek4c)/3),2);
+
+$aspek5a = number_format(($show['aspek_5a'] / $show ['jum_kk']*100),2);
+$aspek5b = number_format(($show['aspek_5b'] / $show ['jum_kk']*100),2);
+$ratarataaspek5 = number_format((($aspek5a + $aspek5b)/2),2);
+
+$aspek6a = number_format(($show['aspek_6a'] / $show ['jum_kk']*100),2);
+$aspek6b = number_format(($show['aspek_6b'] / $show ['jum_kk']*100),2);
+$ratarataaspek6 = number_format((($aspek6a + $aspek6b)/2),2);
+
+$aspek7a = number_format(($show['aspek_7a'] / $show ['jum_bangunan']*100),2);
+$aspek7b = number_format(($show['aspek_7b'] / $show ['jum_bangunan']*100),2);
+$ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
 ?>
 
 <!DOCTYPE html>
@@ -183,7 +195,11 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Bangunan Gedung</th>
+<<<<<<< HEAD
                                 <th class="text-center" style="background-color: #ffbb05;"><?= $aspek1rata ?></th>
+=======
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek1 ?>%</th>
+>>>>>>> 95832cbcf198b333167e3aa3f8a97946b514fcc4
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="4">
@@ -207,7 +223,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Jalan Lingkungan</th>
-                                <th class="text-center" style="background-color: #ffbb05;">...</th>
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek2 ?>%</th>
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="6">
@@ -231,7 +247,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Penyediaan Air Minum</th>
-                                <th class="text-center" style="background-color: #ffbb05;">...</th>
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek3 ?>%</th>
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="8">
@@ -264,7 +280,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Drainase Lingkungan</th>
-                                <th class="text-center" style="background-color: #ffbb05;">...</th>
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek4 ?>%</th>
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="11">
@@ -288,7 +304,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Pengelolaan Air Limbah</th>
-                                <th class="text-center" style="background-color: #ffbb05;">...</th>
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek5 ?>%</th>
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="13">
@@ -312,7 +328,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Pengelolaan Persampahan</th>
-                                <th class="text-center" style="background-color: #ffbb05;">...</th>
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek6 ?>%</th>
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="15">
@@ -336,7 +352,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Proteksi Kebakaran</th>
-                                <th class="text-center" style="background-color: #ffbb05;">...</th>
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek7 ?>%</th>
                                 <th></th>
                               </tr>
                             <tfoot class="fw-600 bg-soft-secondary">
@@ -374,21 +390,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                   </div>
                 </div>
               </div>
-              <!-- <div class="text-center">
-                <h1 class="fw-bolder">Total Penanganan Kumuh Jatim 2023</h1>
-          <table id="datatable" class="table table-striped text-center">
-            <thead>
-              <tr>
-                <th>Luas Kumuh Awal</th>
-                <th>Kumulatif sd 2023</th>
-                <th>Sisa Luasan Kumuh</th>
-              </tr>
-            </thead>
-            <tbody>
-              <td><?= $sumluasawal ?></td>
-            </tbody>
-          </table>
-        </div> -->
+        
           </div>
     </section>
   </main>
