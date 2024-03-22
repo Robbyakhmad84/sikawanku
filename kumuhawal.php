@@ -9,7 +9,7 @@ $namakab = query("SELECT * FROM kabupaten WHERE id_kab = $id_kab")[0];
 $nama = query("SELECT * FROM kelurahan WHERE id_kel = $id")[0];
 $namakaw = query("SELECT * FROM kawasan WHERE id_kaw = $id_kaw")[0];
 //var_dump($namakawasan);
-$show = query("SELECT * FROM rtrw WHERE id_rtrw = $id")[0];
+$show = query("SELECT * FROM rtrw WHERE id_kel = $id")[0];
 
 $aspek1a = number_format($show['aspek_1a'] / $show ['jum_bangunan'],4)*100;
 $aspek1b = number_format($show['aspek_1b'] / $show ['luas_verif'],4)*100;
@@ -183,7 +183,7 @@ $aspek7b = number_format($show['aspek_7b'] / $show ['jum_bangunan'],4)*100;
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Bangunan Gedung</th>
-                                <th class="text-center" style="background-color: #ffbb05;">...</th>
+                                <th class="text-center" style="background-color: #ffbb05;"><?= $aspek1rata ?></th>
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="4">

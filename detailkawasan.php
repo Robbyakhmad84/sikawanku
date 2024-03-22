@@ -51,7 +51,7 @@ $show = query("SELECT * FROM kelurahan WHERE id_kaw =$id");
                 <h1 class="fw-bolder">Detail Kelurahan Kawasan <?= $namakawasan["nama_kaw"] ?></h1>
             </div>
             <div class="card bg-primary text-white">
-                <div class="card-body">Total Luas Kumuh <br> <?= $string ?> Ha</div>
+                <div class="card-body">Sisa Luas Kumuh Total<br> <?= $string ?> Ha</div>
             </div>
             <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="row gx-0 justify-content-center">
