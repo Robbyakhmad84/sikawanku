@@ -219,11 +219,7 @@ $totalrata2 = number_format((($ratarataaspek1 + $ratarataaspek2 + $ratarataaspek
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Bangunan Gedung</th>
-<<<<<<< HEAD
-                                <th class="text-center" style="background-color: #ffbb05;"><?= $aspek1rata ?></th>
-=======
                                 <th class="text-center" style="background-color: #ffbb05;"><?= $ratarataaspek1 ?>%</th>
->>>>>>> 95832cbcf198b333167e3aa3f8a97946b514fcc4
                                 <th></th>
                               </tr>
                               <tr data-id_aspek="4">
