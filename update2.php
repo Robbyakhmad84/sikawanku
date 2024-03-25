@@ -50,7 +50,7 @@ if (isset($_POST["submit"])) {
         <input type="hidden" name="luasawal" value="<?= $namakab["luasawal"]?>">
         <ul>
             <li>
-                <label for="nama"> Kab/Kota : <?= $namakab["nama"] ?> </label>
+                <label for="nama"> Kab/Kota Madya : <?= $namakab["nama"] ?> </label>
             </li>
             <li>
                 <label for="luasawal">Luas Kumuh Awal : <?= $namakab["luasawal"] ?></label>
