@@ -71,8 +71,34 @@ function registrasi($data)
     return mysqli_affected_rows($conn);
 }
 
-function scoring($prosen){
-    global $conn;
 
-    if ($prosen)
+function scoring($prosen)
+{
+
+    if ($prosen < 25) {
+        return 0;
+    } elseif ($prosen >= 25 && $prosen <= 50) {
+        return 1;
+    } elseif ($prosen >= 51 && $prosen <= 75) {
+        return 3;
+    } elseif ($prosen >= 76 && $prosen <= 100) {
+        return 5;
+    } else {
+        return "Nilai di luar rentang yang ditentukan.";
+    }
+}
+
+function tingkatkumuh($nilai)
+{
+    if ($nilai < 16) {
+        return "TIDAK KUMUH";
+    } elseif ($nilai >= 16 && $nilai <= 37) {
+        return "KUMUH RINGAN";
+    } elseif ($nilai >=38 && $nilai <= 59){
+        return "KUMUH SEDANG";
+    } elseif ($nilai >=60 && $nilai <=80){
+        return "KUMUH BERAT";
+    }else {
+        return "Nilai di luar rentang";
+    }
 }

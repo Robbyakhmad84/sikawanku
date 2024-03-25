@@ -15,31 +15,55 @@ $aspek1a = number_format(($show['aspek_1a'] / $show ['jum_bangunan']*100),2);
 $aspek1b = number_format(($show['aspek_1b'] / $show ['luas_verif']*100),2);
 $aspek1c = number_format(($show['aspek_1c'] / $show ['jum_bangunan']*100),2);
 $ratarataaspek1 = number_format((($aspek1a + $aspek1b + $aspek1c)/3),2);
+$nilai1a = scoring($aspek1a);
+$nilai1b = scoring($aspek1b);
+$nilai1c = scoring($aspek1c);
 
 $aspek2a = number_format(($show['aspek_2a'] / $show ['pjg_jaling']*100),2);
 $aspek2b = number_format(($show['aspek_2b'] / $show ['pjg_jaling']*100),2);
 $ratarataaspek2 = number_format((($aspek2a + $aspek2b)/2),2);
+$nilai2a = scoring($aspek2a);
+$nilai2b = scoring($aspek2b);
 
 $aspek3a = number_format(($show['aspek_3a'] / $show ['jum_kk']*100),2);
 $aspek3b = number_format(($show['aspek_3b'] / $show ['jum_kk']*100),2);
 $ratarataaspek3 = number_format((($aspek3a + $aspek3b)/2),2);
+$nilai3a = scoring($aspek3a);
+$nilai3b = scoring($aspek3b);
 
 $aspek4a = number_format(($show['aspek_4a'] / $show ['luas_verif']*100),2);
 $aspek4b = number_format(($show['aspek_4b'] / $show ['pjg_drn']*100),2);
 $aspek4c = number_format(($show['aspek_4c'] / $show ['pjg_drn']*100),2);
 $ratarataaspek4 = number_format((($aspek4a + $aspek4b + $aspek4c)/3),2);
+$nilai4a = scoring($aspek4a);
+$nilai4b = scoring($aspek4b);
+$nilai4c = scoring($aspek4c);
 
 $aspek5a = number_format(($show['aspek_5a'] / $show ['jum_kk']*100),2);
 $aspek5b = number_format(($show['aspek_5b'] / $show ['jum_kk']*100),2);
 $ratarataaspek5 = number_format((($aspek5a + $aspek5b)/2),2);
+$nilai5a = scoring($aspek5a);
+$nilai5b = scoring($aspek5b);
 
 $aspek6a = number_format(($show['aspek_6a'] / $show ['jum_kk']*100),2);
 $aspek6b = number_format(($show['aspek_6b'] / $show ['jum_kk']*100),2);
 $ratarataaspek6 = number_format((($aspek6a + $aspek6b)/2),2);
+$nilai6a = scoring($aspek6a);
+$nilai6b = scoring($aspek6b);
 
 $aspek7a = number_format(($show['aspek_7a'] / $show ['jum_bangunan']*100),2);
 $aspek7b = number_format(($show['aspek_7b'] / $show ['jum_bangunan']*100),2);
 $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
+$nilai7a = scoring($aspek7a);
+$nilai7b = scoring($aspek7b);
+
+$totalnilai = $nilai1a + $nilai1b + $nilai1c + $nilai2a + $nilai2b + $nilai3a 
++ $nilai3b + $nilai4a + $nilai4b + $nilai4c + $nilai5a + $nilai5b + $nilai6a + $nilai6b + $nilai7a + $nilai7b;
+
+$tingkatkumuh = tingkatkumuh($totalnilai);
+$totalrata2 = number_format((($ratarataaspek1 + $ratarataaspek2 + $ratarataaspek3 + $ratarataaspek4 
++ $ratarataaspek5 + $ratarataaspek6 + $ratarataaspek7)/7),2);
+
 ?>
 
 <!DOCTYPE html>
@@ -173,7 +197,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Unit </td>
                                 <td class="text-center"><?= $aspek1a ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai1a ?></td>
                               </tr>
                               <tr data-id_aspek="2">
                                 <td style="font-weight: 600 !important;">b. Kepadatan Bangunan</td>
@@ -182,7 +206,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Ha </td>
                                 <td class="text-center"><?= $aspek1b ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai1b ?></td>
                               </tr>
                               <tr data-id_aspek="3">
                                 <td style="font-weight: 600 !important;">c. Ketidaksesuaian dengan Persy Teknis Bangunan</td>
@@ -191,7 +215,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Unit </td>
                                 <td class="text-center"><?= $aspek1c ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai1c ?></td>
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Bangunan Gedung</th>
@@ -210,7 +234,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Meter </td>
                                 <td class="text-center"><?= $aspek2a ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai2a ?></td>
                               </tr>
                               <tr data-id_aspek="5">
                                 <td style="font-weight: 600 !important;">b. Kualitas Permukaan Jalan lingkungan</td>
@@ -219,7 +243,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Meter </td>
                                 <td class="text-center"><?= $aspek2b ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai2b ?></td>
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Jalan Lingkungan</th>
@@ -234,7 +258,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   KK </td>
                                 <td class="text-center"><?= $aspek3a ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai3a ?></td>
                               </tr>
                               <tr data-id_aspek="7">
                                 <td style="font-weight: 600 !important;">b. Tidak terpenuhinya Kebutuhan Air Minum</td>
@@ -243,7 +267,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   KK </td>
                                 <td class="text-center"><?= $aspek3b ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai3b ?></td>
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Penyediaan Air Minum</th>
@@ -258,7 +282,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Ha </td>
                                 <td class="text-center"><?= $aspek4a ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai4a ?></td>
                               </tr>
                               <tr data-id_aspek="9">
                                 <td style="font-weight: 600 !important;">b. Ketidaktersediaan Drainase</td>
@@ -267,7 +291,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Meter </td>
                                 <td class="text-center"><?= $aspek4b ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai4b ?></td>
                               </tr>
                               <tr data-id_aspek="10">
                                 <td style="font-weight: 600 !important;">c. Kualitas Konstruksi Drainase</td>
@@ -276,7 +300,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Meter </td>
                                 <td class="text-center"><?= $aspek4c ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai4c ?></td>
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Drainase Lingkungan</th>
@@ -291,7 +315,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   KK </td>
                                 <td class="text-center"><?= $aspek5a ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai5a ?></td>
                               </tr>
                               <tr data-id_aspek="12">
                                 <td style="font-weight: 600 !important;">b. Prasarana dan Sarana Pengelolaan Air Limbah Tidak Sesuai dengan Persyaratan Teknis</td>
@@ -300,7 +324,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   KK </td>
                                 <td class="text-center"><?= $aspek5b ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai5b ?></td>
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Pengelolaan Air Limbah</th>
@@ -315,7 +339,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   KK </td>
                                 <td class="text-center"><?= $aspek6a ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai6a ?></td>
                               </tr>
                               <tr data-id_aspek="14">
                                 <td style="font-weight: 600 !important;">b. Sistem Pengelolaan Persampahan yang tidak sesuai Standar Teknis</td>
@@ -324,7 +348,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   KK </td>
                                 <td class="text-center"><?= $aspek6b ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai6b ?></td>
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Pengelolaan Persampahan</th>
@@ -339,7 +363,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Unit </td>
                                 <td class="text-center"><?= $aspek7a ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai7a ?></td>
                               </tr>
                               <tr data-id_aspek="16">
                                 <td style="font-weight: 600 !important;">b. Ketidaktersediaan Sarana Proteksi Kebakaran</td>
@@ -348,7 +372,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                                 <td class="text-center">
                                   Unit </td>
                                 <td class="text-center"><?= $aspek7b ?></td>
-                                <td class="text-center">...</td>
+                                <td class="text-center"><?= $nilai7b ?></td>
                               </tr>
                               <tr style="background-color: #05fff3;">
                                 <th colspan="4">Rata-rata Kondisi Proteksi Kebakaran</th>
@@ -359,13 +383,13 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                               <tr>
                                 <td class="text-center" colspan="2">BATAS AMBANG NILAI TINGKAT KEKUMUHAN</td>
                                 <td class="text-right" colspan="2">TOTAL NILAI</td>
-                                <td class="text-center" colspan="2">22</td>
+                                <td class="text-center" colspan="2"><?= $totalnilai ?></td>
                               </tr>
                               <tr>
                                 <td class="text-center bg-danger" colspan="2">60 -80 : KUMUH BERAT</td>
                                 <td class="text-right" colspan="2" rowspan="2">TINGKAT KEKUMUHAN</td>
                                 <td class="text-center" rowspan="2" colspan="2">
-                                  KUMUH RINGAN </td>
+                                  <?= $tingkatkumuh ?></td>
                               </tr>
                               <tr>
                                 <td class="text-center bg-warning" colspan="2">38 - 59 : KUMUH SEDANG</td>
@@ -373,7 +397,7 @@ $ratarataaspek7 = number_format((($aspek7a + $aspek7b)/2),2);
                               <tr>
                                 <td class="text-center" style="background-color: yellow;" colspan="2">16 - 37 KUMUH RINGAN</td>
                                 <td class="text-right" colspan="2">RATA2 KEKUMUHAN SEKTORAL</td>
-                                <td class="text-center" colspan="2">32.73</td>
+                                <td class="text-center" colspan="2"><?= $totalrata2 ?></td>
                               </tr>
                               <tr>
                                 <td class="text-center bg-success" colspan="2">
