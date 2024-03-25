@@ -102,3 +102,6 @@ function tingkatkumuh($nilai)
         return "Nilai di luar rentang";
     }
 }
+function tes (){
+    echo "";
+}
