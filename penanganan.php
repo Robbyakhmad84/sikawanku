@@ -43,7 +43,7 @@
     <section class="py-3">
       <div class="container px-5">
         <div class="text-center">
-          <h1 class="fw-bolder">Detail RT RW Terdeliniasi</h1>
+          <h1 class="fw-bolder">SIMULASI PENANGANAN KUMUH</h1>
         </div>
         <div class="card">
           <div class="card-body">
@@ -59,7 +59,7 @@
                     <td>Jawa Timur</td>
                   </tr>
                   <tr>
-                    <th>Kabupaten</th>
+                    <th>Kabupaten / Kota</th>
                     <td>KOTA PASURUAN</td>
                   </tr>
                   <tr>
@@ -114,11 +114,11 @@
                             <th style="width: 150px;">Volume Kumuh Awal</th>
                             <th style="width: 250px;">KRITERIA</th>
                             <th>KEGIATAN</th>
-                            <th>VOLUME</th>
+                            <th>VOLUME OUTCOME</th>
                             <th>SATUAN</th>
                             <th>SUMBER<br>ANGGARAN</th>
-                            <th>ANGGARAN</th>
-                            <th style="width: 100px;">AKSI</th>
+                            <th>JUMLAH BIAYA</th>
+                            <th style="width: 100px;">TAHUN</th>
                         </tr>
                         <tr>
                        <td rowspan="3">1. Kondisi Bangunan Gedung
@@ -156,7 +156,7 @@
                         </tr> 
                         <td rowspan="2">3. Kondisi Penyediaan Air Minum
                        <td rowspan="1">30
-                       </td><td rowspan="1"> a. Ketersediaan Akses Aman Air Minum 
+                       </td><td rowspan="1"> a. Ketidaktersediaan Akses Aman Air Minum 
                        <br> <button data-id_aspek="c4ca4238a0b923820dcc1509a6f75849b" onclick="penanganan(this,'tambah');" class="btn btn-primary btn-sm fw-600"><i class="fa fa-plus mr-1"></i> entry kegiatan</button>
                        </td> <td colspan="6" class="text-center text-merah fw-500">belum ada penanganan</td>                      
                         </tr> 
